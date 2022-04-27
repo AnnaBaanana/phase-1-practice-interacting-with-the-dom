@@ -4,6 +4,8 @@ const minus = document.getElementById('minus')
 const plus = document.getElementById('plus')
 const heart = document.getElementById('heart')
 const pause = document.getElementById('pause')
+const form = document.getElementById('comment-form')
+const commentList = document.getElementById('list')
 
 function timer() {
     intTime = setInterval(() => counter.textContent++, 1000)}
@@ -21,8 +23,8 @@ function increaseTimer() {
 }
 
 function liker() {
-    //const numArray = [];
-    //const countLikes = {};
+    let numArray = [];
+    let likeCounter = {};
     heart.addEventListener('click', ()=> {
         const likes = document.querySelector('.likes')
         console.log(likes)
@@ -30,7 +32,9 @@ function liker() {
         li.textContent = `${heart.textContent} ${counter.textContent}`
         console.log(li)
         likes.append(li)
-    })
+        numArray.push(counter.textContent)
+        console.log(numArray)
+        })
 }
 
 function pauser() {
@@ -49,6 +53,17 @@ function stopTimer() {
     counter.TextContent=currentTime
 }
 
+function addComment() {
+    form.addEventListener('submit', (e)=> {
+        e.preventDefault()
+        console.log(e)
+        const liCom = document.createElement('ul')
+        liCom.textContent = e.target[0].value
+        commentList.append(liCom)
+        form.reset()
+    })
+
+}
 const domLoaded = () => {
     document.addEventListener('DOMContentLoaded', 
     () => {console.log('DOM Loaded')
@@ -56,7 +71,8 @@ const domLoaded = () => {
     decreaseTimer(),
     increaseTimer(),
     liker(),
-    pauser()
+    pauser(),
+    addComment()
 })
 }
 
