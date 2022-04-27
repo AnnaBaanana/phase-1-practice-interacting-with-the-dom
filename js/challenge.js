@@ -42,21 +42,26 @@ function pauser() {
         e.preventDefault()
         console.log(e)
         console.log(e.target)
+        const pauseLabel = 'resume'
+        const unpauseLabel = 'pause'
         if (e.target.outerText==='pause') {
-            e.target.outerText='resume'
-        } else {e.target.outerText='pause'}
+            pause.innerHTML=pauseLabel
+            minus.disabled = true;
+            plus.disabled = true;
+            document.getElementById('submit').disabled = true;
+        } else {
+            pause.innerHTML = unpauseLabel
+            minus.disabled = false;
+            plus.disabled = false;
+            document.getElementById('submit').disabled = false;
+        }
     })
-}
-
-function stopTimer() {
-    let currentTime = counter.textContent
-    counter.TextContent=currentTime
 }
 
 function addComment() {
     form.addEventListener('submit', (e)=> {
         e.preventDefault()
-        console.log(e)
+        //console.log(e)
         const liCom = document.createElement('ul')
         liCom.textContent = e.target[0].value
         commentList.append(liCom)
