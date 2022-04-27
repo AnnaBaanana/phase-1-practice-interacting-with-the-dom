@@ -48,12 +48,16 @@ function pauser() {
             pause.innerHTML=pauseLabel
             minus.disabled = true;
             plus.disabled = true;
+            heart.disabled = true;
+            clearInterval(intTime)
             document.getElementById('submit').disabled = true;
         } else {
             pause.innerHTML = unpauseLabel
             minus.disabled = false;
             plus.disabled = false;
+            heart.disabled=false;
             document.getElementById('submit').disabled = false;
+            timer()
         }
     })
 }
