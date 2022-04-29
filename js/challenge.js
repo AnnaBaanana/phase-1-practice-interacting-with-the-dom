@@ -24,17 +24,28 @@ function increaseTimer() {
 
 function liker() {
     let numArray = [];
-    let likeCounter = {};
-    heart.addEventListener('click', ()=> {
-        const likes = document.querySelector('.likes')
-        console.log(likes)
-        const li = document.createElement('li')
-        li.textContent = `${heart.textContent} ${counter.textContent}`
-        console.log(li)
-        likes.append(li)
+    let uniqueNums = {};
+    heart.addEventListener('click', () => {
+        console.log(numArray)
         numArray.push(counter.textContent)
         console.log(numArray)
-        })
+        console.log(uniqueNums)
+        for (num of numArray) {
+            console.log(`This is num ${num} and its value ${uniqueNums[num]}` )
+            if (num in uniqueNums) {
+                uniqueNums[num]++
+            } else {
+                uniqueNums[num] = 1
+            }
+            console.log(`This is num ${num} and its value ${uniqueNums[num]}` )
+        } 
+    for (num in uniqueNums) {
+        const likes = document.querySelector('.likes')
+        const li = document.createElement('li')
+        li.textContent = `Number ${num}  was ${heart.textContent}\'ed ${uniqueNums[num]} times`
+        likes.append(li)
+        }
+    })
 }
 
 function pauser() {
