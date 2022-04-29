@@ -26,25 +26,35 @@ function liker() {
     let numArray = [];
     let uniqueNums = {};
     heart.addEventListener('click', () => {
+        //console.log(numArray)
+        let num = counter.textContent
         console.log(numArray)
-        numArray.push(counter.textContent)
-        console.log(numArray)
-        console.log(uniqueNums)
-        for (num of numArray) {
+        //console.log(uniqueNums)
+        //for (num of numArray) {
             console.log(`This is num ${num} and its value ${uniqueNums[num]}` )
             if (num in uniqueNums) {
                 uniqueNums[num]++
+                const idLookUp = document.getElementById(`${num}`)
+                idLookUp.textContent = `Number ${num}  was ${heart.textContent}\'ed ${uniqueNums[num]} times`
+                console.log(idLookUp)
             } else {
                 uniqueNums[num] = 1
             }
             console.log(`This is num ${num} and its value ${uniqueNums[num]}` )
-        } 
-    for (num in uniqueNums) {
+        //}
+    //for (num in uniqueNums) {
         const likes = document.querySelector('.likes')
-        const li = document.createElement('li')
-        li.textContent = `Number ${num}  was ${heart.textContent}\'ed ${uniqueNums[num]} times`
-        likes.append(li)
+        if (numArray.includes(num)) {
+            console.log('number already exists')
+            
+        } else {
+            numArray.push(counter.textContent)
+            const li = document.createElement('li')
+            li.id = num
+            li.textContent = `Number ${num}  was ${heart.textContent}\'ed ${uniqueNums[num]} times`
+            likes.append(li)
         }
+    //    }
     })
 }
 
